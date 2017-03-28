@@ -2,7 +2,10 @@ import bs4 as bs
 import csv
 import codecs
 
-sauce= open('C:\\Users\\sahil.shetye\\Desktop\\Test folder\\output\\summary.html','r')
+file= input("Enter the path for summary.html:")
+sauce= open(file,'r')
+
+#sauce= open('C:\\Users\\sahil.shetye\\Desktop\\Test folder\\output\\summary.html','r')
 soup = bs.BeautifulSoup(sauce,'lxml')
 
 tabl= soup.find_all('table')[2]

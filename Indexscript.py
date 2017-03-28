@@ -2,7 +2,10 @@ import bs4 as bs
 import csv
 import codecs
 
-sauce= open('C:\\Users\\sahil.shetye\\Desktop\\Test folder\\output\\index.html','r')
+
+file= input("Enter the path for index.html:")
+sauce= open(file,'r')
+#sauce= open('C:\\Users\\sahil.shetye\\Desktop\\Test folder\\output\\index.html','r')
 soup = bs.BeautifulSoup(sauce,'lxml')
 
 
