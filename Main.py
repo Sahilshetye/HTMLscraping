@@ -22,7 +22,7 @@ def fcheck( st ):
     if st not in mutationdic:
         mutationdic[st]= 1
         #print(" mutationdic is= ",mutationdic)
-        print(st)
+        #print(st)
         json.dump(mutationdic,"Outputlist.txt")
 
 
@@ -46,11 +46,11 @@ for path in f:
             fcheck(l)
             #print (l)
     except Exception as e:
-        print("Output folder not found ",str(e),"Test running")
-
+        #print("Output folder not found ",str(e),"Test running")
+        print()
 
 
 
 print(" RESULT is as follows: ------------------------>")
 for mu in mutationdic:
-    print (mu)
+    print(mu)
