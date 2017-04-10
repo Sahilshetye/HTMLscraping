@@ -1,11 +1,15 @@
+# -*- coding: utf-8 -*-
+
 import bs4 as bs
 import csv
 import codecs
 
 
 file= input("Enter the path for index.html:")
-sauce= open(file,'r')
-#sauce= open('C:\\Users\\sahil.shetye\\Desktop\\Test folder\\output\\index.html','r')
+sauce= open(unicode(file),'r')
+name= input("Enter the name for output file(.csv):")
+
+#sauce= open('/data1/Test folder/output/index.html','r')
 soup = bs.BeautifulSoup(sauce,'lxml')
 
 
@@ -24,27 +28,30 @@ for tabs in tabl1:
     #print(tabs)
     trs = bs.BeautifulSoup(str(tabs), 'lxml')
     rows=trs.find_all('td')
-    #print(rows)
+    #print((rows))
+
     count=0
+
     for row in rows:
+
         #print('End of row <<<<<<<<<')
 
-        soup= bs.BeautifulSoup(str(row),'lxml')
+        soup= bs.BeautifulSoup(unicode(row),'lxml')
         if (row.a != None):
             otp += row.a['href']
-            otp += str('    ')
+            otp += unicode(u',')
 
 
         otp+=soup.td.text.replace(",","")
-        otp+=str('  ')
+        otp+=unicode(u',')
         count+=1
-    otp+=  str('\n')
+    otp+=  unicode(u'\n')
 
 
-temp=str(otp.encode('utf-8'))
-c = open("MYFILE.csv", "w")
-print(otp)
-c.write(temp)
+temp=unicode(otp)
+c = open(name+".csv", "w")
+#print(otp)
+c.write(otp.encode("utf8"))
 
 
 c.close()
