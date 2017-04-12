@@ -5,11 +5,11 @@ import csv
 import codecs
 
 
-file= input("Enter the path for index.html:")
-sauce= open(unicode(file),'r')
-name= input("Enter the name for output file(.csv):")
+#file= input("Enter the path for index.html:")
+#sauce= open(unicode(file),'r')
+#name= input("Enter the name for output file(.csv):")
 
-#sauce= open('/data1/Test folder/output/index.html','r')
+sauce= open('/data1/Test folder/output/index.html','r')
 soup = bs.BeautifulSoup(sauce,'lxml')
 
 
@@ -17,7 +17,7 @@ soup = bs.BeautifulSoup(sauce,'lxml')
 tabl= soup.find_all('table')[1]   # skipping first table
 
 
-soup= bs.BeautifulSoup(str(tabl),'lxml')
+soup= bs.BeautifulSoup(str(tabl).replace("Δ","DEL-").replace("→",">").replace(" "," ").replace("←","<"),'lxml')
 
 tabl1 = soup.find_all('tr')
 
@@ -49,7 +49,7 @@ for tabs in tabl1:
 
 
 temp=unicode(otp)
-c = open(name+".csv", "w")
+c = open("test.csv", "w")
 #print(otp)
 c.write(otp.encode("utf8"))
 
