@@ -35,7 +35,7 @@ def main(argv):
     tabl= soup.find_all('table')[1]   # skipping first table
 
 
-    soup= bs.BeautifulSoup(str(tabl).replace("Δ","DEL-").replace("→",">").replace(u" "," ").replace("←","<").replace(u'\xa0',''),'lxml')
+    soup= bs.BeautifulSoup(str(tabl),'lxml')
 
     tabl1 = soup.find_all('tr')
 
@@ -57,16 +57,16 @@ def main(argv):
                 otp += str("\t")
 
 
-            otp+=soup.td.text.replace(',',"").replace(u'\u2011',"")
+            otp+=soup.td.text
             otp+=str('\t')
             count+=1
         otp = otp[:-1]
         otp+=  ('\n')
 
 
-    temp=str(otp)
+    temp=otp.replace(',',"").replace(u'\u2011',"").replace("Δ","DEL-").replace("→",">").replace(u" "," ").replace("←","<").replace(u'\xa0','')
     c = open(output_file, "w")
-    print(otp.encode("utf8"))
+    print(temp)
     c.write(temp)
 
 

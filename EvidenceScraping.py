@@ -66,13 +66,15 @@ def main(argv):
             ev.gene=row1.select('td')[10].text
             ev.product=row1.select('td')[11].text
             row2=table.select('tr')[3]
-            mo2= re.search("ref base (.+) \((.+)\);",row2.text)
+            mo1= re.search("ref base ([A-Z\.]+) \(([0-9/]+)\);",row2.text)
             #new base (.+) \((.+)\);  total \((.+)\)
-            if mo2:
-                ev.refbase=mo2.group(2)
-            mo2 = re.search("new base (.+) \((.+)\);", row2.text)
+            if mo1:
+                ev.refbase=mo1.group(2)
+                print(ev.refbase)
+            mo2 = re.search("new base ([A-Z\.]+) \(([0-9/]+)\);", row2.text)
             if mo2:
                 ev.newbase=mo2.group(2)
+                print(ev.newbase)
             mo2 = re.search("total \((.+)\)$", row2.text)
             if mo2:
                 ev.total=mo2.group(1)
